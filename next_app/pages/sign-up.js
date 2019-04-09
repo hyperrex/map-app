@@ -5,6 +5,8 @@ import Router from 'next/router'
 import * as user_actions from '../redux/actions/user_actions.js'
 import Signup_form from "../components/forms/Signup_Form.js";
 import Main_Layout from "../layouts/Main_Layout.js";
+import {ensure_not_loggedin} from '../components/utils/auth.js'
+
 const { register_success, register_attempt, set_user} = user_actions; 
 
 class Signup extends React.Component {
@@ -24,20 +26,14 @@ class Signup extends React.Component {
   }
 
   static async getInitialProps(ctx) {
+    ensure_not_loggedin(ctx)
     let state = ctx.store.getState()
-    console.log(state.user.is_loggedin)
+
     return {state}
   }
 
     componentDidMount(){
-      let state = this.props
-      if(!state.user.is_loggedin){
-        console.log('NOT LOGGED IN')
-      }
-      else {
-        console.log('Is logged in')
-        Router.push('/account-profile')
-      }
+
     }
 
 

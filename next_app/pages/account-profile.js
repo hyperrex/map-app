@@ -4,6 +4,8 @@ import { toastr } from 'react-redux-toastr';
 import { withRouter } from 'next/router';
 import Router from 'next/router';
 
+import {ensure_loggedin} from '../components/utils/auth.js'
+
 
 import Main_Layout from '../layouts/Main_Layout.js';
 class Account_Profile extends React.Component{
@@ -12,15 +14,7 @@ class Account_Profile extends React.Component{
     this.state={}
   }
   static async getInitialProps(ctx){
-    let state = ctx.store.getState()
-    console.log(state.user.is_loggedin)
-    if(!state.user.is_loggedin){
-      console.log('NOT LOGGED IN')
-      // Router.push('/')
-    }
-    else {
-      console.log('Is logged in')
-    }
+    ensure_loggedin(ctx)
     return {}
 
   }

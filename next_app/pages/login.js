@@ -7,6 +7,7 @@ import { toastr } from 'react-redux-toastr';
 import Login_Form from "../components/forms/Login_Form.js";
 import * as user_actions from '../redux/actions/user_actions.js'
 import Main_Layout from "../layouts/Main_Layout.js";
+import {ensure_not_loggedin} from '../components/utils/auth.js'
 
 const { login_success, login_attempt} = user_actions; 
 
@@ -27,19 +28,12 @@ class Login extends React.Component {
   
   static async getInitialProps(ctx) {
     let state = ctx.store.getState()
-    console.log(state.user.is_loggedin)
-    return {state}
+    ensure_not_loggedin(ctx)
+        return {state}
   }
 
     componentDidMount(){
-      let state = this.props
-      if(!state.user.is_loggedin){
-        console.log('NOT LOGGED IN')
-      }
-      else {
-        console.log('Is logged in')
-        Router.push('/account-profile')
-      }
+
     }
 
   
