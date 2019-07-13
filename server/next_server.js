@@ -19,7 +19,7 @@ const next = require("next");
 const middleware = require("./middleware/use.js");
 
 const dev = process.env.NODE_ENV !== "production";
-const port = process.env.PORT || 3000;
+const port = process.env.PORT;
 const next_app = next({ dir: "./next_app", dev });
 const handle = next_app.getRequestHandler();
 
