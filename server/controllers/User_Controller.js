@@ -1,4 +1,4 @@
-const bcrypt = require("bcrypt");
+const bcrypt = require("bcryptjs");
 const formidable = require("formidable");
 
 // const Socket_emitter = require('../socket_server.js').emit_event_to;
